@@ -1,13 +1,11 @@
- 
-const axios = require('axios');
+import axios from 'axios';
 
 // Nature Remo APIを動作させる関数を定義
 async function setAirconSettings() {
-    const token = '<3-1.アクセストークンを取得する で取得したトークン>'; // トークンを設定
+    const token = '<冬の朝をもっと快適に！Cloud Run×Cloud Scheduler×Nature Remoで実現するエアコン自動化プロジェクト で取得したトークン>'; // トークンを設定
     const deviceId = '<device_list.jsonで取得した登録している家電のID>'; // 家電のIDを設定
     const url = `https://api.nature.global/1/appliances/${deviceId}/aircon_settings`;
-
-    // 送信するデータ
+	// 送信するデータ
     const data = new URLSearchParams({
         operation_mode: 'warm',
         temperature: '24',
@@ -46,5 +44,6 @@ async function setAirconSettings() {
 }
 
 // 関数を呼び出し
-setAirconSettings();
-
+export const handler = async () => {
+    await setAirconSettings();
+};
